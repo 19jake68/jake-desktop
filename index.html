@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+      .container {
+        max-width: 900px;
+        margin: auto;
+      }
+
+      #img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img id="img">
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:4001');
+      console.table(socket);
+      socket.on('send', function(data) {
+        document.getElementById('img').src = data;
+      });
+    </script>
+  </body>
+</html>
